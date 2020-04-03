@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="student"
+            type="com.example.student.model.BaseStudent" />
+    </data>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="8"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@{student.SBD}"
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:text="@{student.HT}"
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+        </LinearLayout>
+        <TextView
+            android:text="@{String.valueOf((student.DH+student.DL+student.DT)/3)}"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+</layout>
