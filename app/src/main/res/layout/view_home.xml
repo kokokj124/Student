@@ -4,34 +4,40 @@
         <variable
             name="student"
             type="com.example.student.model.BaseStudent" />
+       <import type="com.example.student.model.ConverBaseStudent"/>
     </data>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_weight="8"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <TextView
-                android:text="@{student.SBD}"
+                android:text="@{ConverBaseStudent.getContenSBD(student.SBD)}"
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />
 
             <TextView
-                android:text="@{student.HT}"
+                android:text="@{ConverBaseStudent.getContentHT(student.HT)}"
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />
         </LinearLayout>
         <TextView
-            android:text="@{String.valueOf((student.DH+student.DL+student.DT)/3)}"
-            android:layout_weight="2"
+            android:text="@{ConverBaseStudent.getContenDTB(((student.DH+student.DL+student.DT)/3))}"
+            android:layout_weight="8"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
     </LinearLayout>
 </layout>

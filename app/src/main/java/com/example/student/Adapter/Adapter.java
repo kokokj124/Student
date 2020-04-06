@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.student.model.BaseStudent;
 import com.example.student.R;
 import com.example.student.databinding.ViewHomeBinding;
+import com.example.student.model.ConverBaseStudent;
+
 import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.StudentViewHolder> {
     ArrayList<BaseStudent> arrayList;

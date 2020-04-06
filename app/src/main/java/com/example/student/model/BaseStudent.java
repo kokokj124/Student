@@ -1,6 +1,10 @@
 package com.example.student.model;
 
-public class BaseStudent {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+
+public class BaseStudent extends BaseObservable {
     public String SBD,HT;
     public double DT,DL,DH;
 
@@ -11,5 +15,24 @@ public class BaseStudent {
         this.DL = DL;
         this.DH = DH;
     }
-
+    @Bindable
+    public String getSBD() {
+        return SBD;
+    }
+    @Bindable
+    public String getHT() {
+        return HT;
+    }
+    @Bindable
+    public double getDT() {
+        return DT;
+    }
+    @Bindable
+    public double getDL() {
+        return DL;
+    }
+    @Bindable
+    public double getDH() {
+        return DH;
+    }
 }
