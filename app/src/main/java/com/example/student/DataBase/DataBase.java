@@ -5,10 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.Nullable;
-
 import com.example.student.model.BaseStudent;
 
-public class DataBase extends SQLiteOpenHelper {
+public class DataBase extends SQLiteOpenHelper{
 
     public DataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
