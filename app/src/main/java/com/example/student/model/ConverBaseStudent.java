@@ -1,4 +1,7 @@
 package com.example.student.model;
+
+import android.util.Log;
+
 public class ConverBaseStudent{
     public ConverBaseStudent() {
     }
@@ -9,6 +12,7 @@ public class ConverBaseStudent{
         return "HoTen: "+HT;
     }
     public static String getContenDTB(double DTB){
-        return "DTB: "+ Math.round(DTB*1000/1000);
+        Log.d("ACV",""+(double)Math.round(DTB*100/100));
+        return "DTB: "+ (double)Math.round(DTB*100/100);
     }
 }

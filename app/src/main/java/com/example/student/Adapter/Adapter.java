@@ -1,4 +1,7 @@
 package com.example.student.Adapter;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -10,15 +13,15 @@ import com.example.student.model.BaseStudent;
 import com.example.student.R;
 import com.example.student.databinding.ViewHomeBinding;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.StudentViewHolder> implements Filterable {
     ArrayList<BaseStudent> arrayList;
     ArrayList<BaseStudent> arrayListFull = new ArrayList<>();
-
-    public Adapter(ArrayList<BaseStudent> arrayList) {
+    ClickThem clickThem;
+    public Adapter(ClickThem clickThem,ArrayList<BaseStudent> arrayList) {
         this.arrayList = arrayList;
         this.arrayListFull.addAll(arrayList);
+        this.clickThem = clickThem;
     }
     @NonNull
     @Override
@@ -29,7 +32,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.StudentViewHolder> imp
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         BaseStudent currentStudent = arrayList.get(position);
+        holder.viewBinding.imageButton.setOnClickListener((v)->{
+            clickThem.click(currentStudent);
+        });
         holder.viewBinding.setStudent(currentStudent);
+    }
+    public interface ClickThem{
+        void click(BaseStudent baseStudent);
     }
     @Override
     public int getItemCount() {

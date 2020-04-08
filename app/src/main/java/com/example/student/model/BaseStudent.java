@@ -3,8 +3,10 @@ package com.example.student.model;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
+import java.io.Serializable;
 
-public class BaseStudent extends BaseObservable {
+
+public class BaseStudent extends BaseObservable implements Serializable {
     public String SBD,HT;
     public double DT,DL,DH;
 

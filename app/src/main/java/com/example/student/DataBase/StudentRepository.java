@@ -10,12 +10,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 public class StudentRepository {
-    public static DataBase database;
+    public DataBase database;
     @Inject
     public StudentRepository(@Named("context") Context context) {
         database = new DataBase(context,"data.sqlite",null,1);
-        database.queryData("CREATE TABLE IF NOT EXISTS Student(SBD text , HT text, DT float, DL float, DH float , UNIQUE(SBD));");
-//        StudentRepository.database.queryData("DROP TABLE Student");
+        database.queryData("CREATE TABLE IF NOT EXISTS Student(SBD nvarchar(50) , HT nvarchar(50), DT float, DL float, DH float , UNIQUE(SBD));");
+//        database.queryData("INSERT INTO Student VALUES ('AAA','Vu Van Nam',7.9,8.5,6.2) ");
+//        database.queryData("INSERT INTO Student VALUES ('AAA1','Vu Van Nam',7.9,8.5,6.2) ");
+//        database.queryData("INSERT INTO Student VALUES ('AAA2','Vu Van Nam',7.9,8.5,6.2) ");
+//        database.queryData("INSERT INTO Student VALUES ('AAA3','Vu Van Nam',7.9,8.5,6.2) ");
+        //        database.queryData("DROP TABLE Student");
+    }
+    public void editStudent(BaseStudent baseStudent){
+        database.edit_DoVat(baseStudent);
     }
     public MutableLiveData<ArrayList<BaseStudent>> getListStudent(){
         MutableLiveData<ArrayList<BaseStudent>> mutableLiveData = new MutableLiveData<>();
@@ -28,7 +35,6 @@ public class StudentRepository {
                     cursor.getDouble(3),
                     cursor.getDouble(4)));
         }
-        Log.d("AAA",list.get(0).HT);
         mutableLiveData.setValue(list);
         return mutableLiveData;
     }

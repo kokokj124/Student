@@ -27,11 +27,11 @@ public class DataBase extends SQLiteOpenHelper{
         String sql = "insert into Student values(?, ?, ?, ?, ?)";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
-        statement.bindString(0,SBD);
-        statement.bindString(1,HT);
-        statement.bindDouble(2,DT);
+        statement.bindString(1,SBD);
+        statement.bindString(2,HT);
         statement.bindDouble(3,DT);
         statement.bindDouble(4,DT);
+        statement.bindDouble(5,DT);
         statement.executeInsert();
     }
     public void delete_DoVat(String SBD){
@@ -39,7 +39,7 @@ public class DataBase extends SQLiteOpenHelper{
         String sql = "delete from Student where SBD = ?";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
-        statement.bindString(0,SBD);
+        statement.bindString(1,SBD);
         statement.executeInsert();
     }
     public void edit_DoVat(BaseStudent student){
@@ -47,11 +47,11 @@ public class DataBase extends SQLiteOpenHelper{
         String sql = "update Student set HT = ?, DT = ?, DL = ?, DH = ? where SBD = ?";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
-        statement.bindString(0,student.HT);
-        statement.bindDouble(1,student.DT);
-        statement.bindDouble(2,student.DL);
-        statement.bindDouble(3,student.DH);
-        statement.bindString(4,student.SBD);
+        statement.bindString(1,student.HT);
+        statement.bindDouble(2,student.DT);
+        statement.bindDouble(3,student.DL);
+        statement.bindDouble(4,student.DH);
+        statement.bindString(5,student.SBD);
         statement.executeInsert();
     }
     @Override

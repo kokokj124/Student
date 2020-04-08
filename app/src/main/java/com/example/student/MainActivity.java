@@ -1,31 +1,27 @@
 package com.example.student;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.student.Adapter.Adapter;
-import com.example.student.Dagger.AppComponent;
 import com.example.student.DataBase.StudentRepository;
 import com.example.student.model.BaseStudent;
 import com.example.student.ViewModel.MainViewModel;
 import com.example.student.databinding.ActivityMainBinding;
 import java.util.ArrayList;
-
 import javax.inject.Inject;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Adapter.ClickThem {
 
     MainViewModel mainViewModel;
     Adapter adapter;
@@ -39,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        adapter = new Adapter(mainViewModel.getListStudent().getValue());
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        adapter = new Adapter(this,mainViewModel.getListStudent().getValue());
         recyclerView.setAdapter(adapter);
         getAllStudent();
-
     }
-
     public void getAllStudent(){
         mainViewModel.getListStudent().observe(this, new Observer<ArrayList<BaseStudent>>() {
             @Override
@@ -53,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu,menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
         SearchView searchView = (SearchView) item.getActionView();
+        searchView.setMaxWidth(999999);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -72,7 +67,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public void click(BaseStudent baseStudent) {
+        FragmentExit fragmentExit = new FragmentExit(baseStudent,this);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.aaa, fragmentExit);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
 }
+

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="student"
@@ -10,16 +11,10 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10"
-        android:paddingLeft="20dp"
-        android:paddingBottom="20dp"
-        android:paddingRight="20dp">
-
+        android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_weight="2"
             android:orientation="vertical">
 
             <TextView
@@ -33,11 +28,15 @@
                 android:layout_height="25dp" />
         </LinearLayout>
         <TextView
-            android:text="@{ConverBaseStudent.getContenDTB(((student.DH+student.DL+student.DT)/3))}"
-            android:layout_weight="8"
-            android:layout_width="match_parent"
+            android:text="@{ConverBaseStudent.getContenDTB(((student.DH+student.DL+student.DT)/3.0))}"
+            android:layout_width="125dp"
             android:layout_height="50dp"
             android:textStyle="bold"
             android:gravity="center"/>
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@android:drawable/ic_menu_add" />
     </LinearLayout>
 </layout>

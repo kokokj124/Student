@@ -17,9 +17,11 @@ public class MainViewModel extends AndroidViewModel {
         AppComponent component = DaggerAppComponent.builder().content(application).build();
         component.inject(this);
     }
-
     public LiveData<ArrayList<BaseStudent>> getListStudent(){
         return studentRepository.getListStudent();
+    }
+    public void editStudent(BaseStudent baseStudent){
+        studentRepository.editStudent(baseStudent);
     }
 
 }
